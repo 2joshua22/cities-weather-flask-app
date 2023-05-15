@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cities Weather</title>
+    <link rel="stylesheet" href="../static/style/style.css">
+</head>
+<body>
+    <h1>Cities Weather</h1>
+    <form method="POST">
+        {{Form.hidden_tag()}}
+        {{Form.city_name.label}} {{Form.city_name()}}
+        {{Form.submit()}}
+    </form><br>
+    {%for i in Cities%}
+    <div class="card">
+        <h2>{{i.name}}</h2>
+        <img class="climate" src="https:{{i.img}}">
+        <a href="{{url_for('delete',id=i.id)}}"><img class="icon" src="../static/images/close.png"></a>
+        <p>Date & Time: {{i.datetime}}</p>
+        <p>Temperature: {{i.temp}}&deg;C feels like {{i.temp_like}}&deg;C</p>
+        <p>Description: {{i.desc}}</p>
+        <p>Humidity: {{i.humi}}&percnt;</p>
+        <p>Wind {{i.wind}}Km/h</p>
+    </div>
+    {%endfor%}
+</body>
+</html>
